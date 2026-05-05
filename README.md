@@ -40,17 +40,17 @@
 
 ```mermaid
 flowchart TD
-    Trend[매주 트렌드 키워드<br/>Track B: 사람 입력] --> Step1
-    Refs[(references/<br/>9개 정적 문서<br/>brand_kpi · target_psychology<br/>performance · script_templates ...)] -.manual routing.-> Step1
-    Archive[(references/05_archive.json<br/>105+ 콘텐츠 + Gemini embeddings)] -.cosine similarity<br/>≥0.85 중복.-> Step1
+    Trend["매주 트렌드 키워드<br/>(Track B: 사람 입력)"] --> Step1
+    Refs[("references/<br/>9개 정적 문서<br/>brand_kpi, target_psychology<br/>performance, script_templates")] -.manual routing.-> Step1
+    Archive[("references/05_archive.json<br/>105+ 콘텐츠 + Gemini embeddings")] -.cosine similarity.-> Step1
 
-    Step1[Step 1: 아이데이션<br/>10 후보 → 7 selected<br/>Track A 자료 + Track B 트렌드] --> Step2[Step 2: 자료조사<br/>Tavily 검색 → 매니챗 자료]
-    Step2 --> Step3[Step 3: 대본 작성<br/>Gemini, references 주입]
-    Step3 --> Step4[Step 4: 썸네일 후킹<br/>훅 패턴 + 자막 분리]
-    Step4 --> Step5[Step 5: 인스타 캡션<br/>브랜드 톤 + CTA]
-    Step5 --> Step6[Step 6: Notion 기록<br/>주간 7개 row push]
+    Step1["Step 1: 아이데이션<br/>10 후보 → 7 selected<br/>Track A + Track B"] --> Step2["Step 2: 자료조사<br/>Tavily → 매니챗 자료"]
+    Step2 --> Step3["Step 3: 대본 작성<br/>Gemini + references 주입"]
+    Step3 --> Step4["Step 4: 썸네일 후킹<br/>훅 패턴 + 자막"]
+    Step4 --> Step5["Step 5: 인스타 캡션<br/>브랜드 톤 + CTA"]
+    Step5 --> Step6["Step 6: Notion 기록<br/>주간 7개 row push"]
 
-    HardRules[HARD_RULES.md<br/>guardrail 규칙] -.각 step 주입.-> Step3
+    HardRules["HARD_RULES.md<br/>guardrail 규칙"] -.각 step 주입.-> Step3
     HardRules -.-> Step4
     HardRules -.-> Step5
 ```
